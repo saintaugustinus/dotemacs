@@ -1,0 +1,5 @@
+*.elc
+*~
+#*#
+.yas-compiled-snippets.el
+misc/clang-complete
