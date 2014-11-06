@@ -1,3 +1,4 @@
+(require-package 'markdown-mode)
 (require 'markdown-mode)
 
 (setq auto-mode-alist

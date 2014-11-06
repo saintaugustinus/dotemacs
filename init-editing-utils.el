@@ -6,7 +6,7 @@
 
 (mouse-avoidance-mode 'animate)
 
-(require 'rainbow-delimiters)
-(global-rainbow-delimiters-mode)
+(require-package 'rainbow-delimiters)
+(add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
 
 (provide 'init-editing-utils)

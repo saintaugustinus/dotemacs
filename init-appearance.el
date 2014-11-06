@@ -9,8 +9,11 @@
 (tool-bar-mode 0)
 (global-linum-mode t)
 
+(require-package 'moe-theme)
 (require 'moe-theme-switcher)
+
 ;; Make tabbar looks nice 
+(require-package 'tabbar)
 (require 'tabbar)
 
 (set-face-attribute 'tabbar-default nil

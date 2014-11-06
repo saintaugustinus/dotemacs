@@ -5,4 +5,9 @@
 
 (package-initialize)
 
+(defun require-package (package &optional min-version)
+  (if (package-installed-p package min-version)
+      t
+    (package-install package)))
+
 (provide 'init-elpa)

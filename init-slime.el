@@ -1,3 +1,4 @@
+(require-package 'slime)
 (require 'slime)
 
 (setq inferior-lisp-program "/usr/bin/sbcl")

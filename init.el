@@ -3,6 +3,8 @@
 ;;----------------------------------------------------------------------------
 (require 'init-elpa)
 
+(require-package 'diminish)
+
 ;; For a better appearance
 (require 'init-appearance)
 (require 'init-fonts)
@@ -12,7 +14,8 @@
 ;;----------------------------------------------------------------------------
 (require 'init-yasnippet)
 (require 'init-smartparens)
-(require 'init-auto-complete)
+;; (require 'init-auto-complete)
+(require 'init-company)
 (require 'init-ido)
 (require 'init-helm)
 (require 'init-isearch)

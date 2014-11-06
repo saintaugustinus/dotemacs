@@ -1,7 +1,10 @@
 ;; Smartparens Settings
+(require-package 'smartparens)
 (require 'smartparens-config)
 
 (smartparens-global-mode 1)
+
+(diminish 'smartparens-mode)
 
 (defun ext/sp-create-newline-and-enter-sexp (&rest _ignored)
   "Open a new brace or bracket expression, with relevant newlines and indent. "

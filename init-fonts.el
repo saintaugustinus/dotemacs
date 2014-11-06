@@ -24,15 +24,15 @@
 
 ;;    (set-face-font 'italic (font-spec :family (find-if #'ext/font-existsp english-fonts) :slant 'italic :weight 'normal :size english-font-size))
 ;;    (set-face-font 'bold-italic (font-spec :family (find-if #'ext/font-existsp english-fonts) :slant 'italic :weight 'bold :size english-font-size))
-    (set-face-font 'font-lock-comment-face (font-spec :family (find-if #'ext/font-existsp english-fonts) :slant 'italic))
+;;    (set-face-font 'font-lock-comment-face (font-spec :family (find-if #'ext/font-existsp english-fonts) :size english-font-size :slant 'italic))
     (dolist (charset '(han cjk-misc kana bopomofo))
       (set-fontset-font t charset zh-font))))
 
-(defvar ext/english-fonts '("Consolas" "Monaco" "DejaVu Sans Mono" "Monospace" "Courier New"))
+(defvar ext/english-fonts '("Source Code Pro" "Consolas" "Monaco" "DejaVu Sans Mono" "Monospace" "Courier New"))
 (defvar ext/chinese-fonts '("微软雅黑" "Microsoft Yahei" "文泉驿等宽微米黑" "黑体" "新宋体" "宋体"))
 
 (ext/set-font
- ext/english-fonts 14
+ ext/english-fonts 12
  ext/chinese-fonts)
 
 (defvar ext/english-font-size-steps '(10 11 12 14 16 18 22))

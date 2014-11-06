@@ -1,3 +1,4 @@
+(require-package 'helm)
 (setq helm-command-prefix-key "C-x C-a")
 
 (require 'helm)
