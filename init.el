@@ -14,8 +14,7 @@
 ;;----------------------------------------------------------------------------
 (require 'init-yasnippet)
 (require 'init-smartparens)
-;; (require 'init-auto-complete)
-(require 'init-company)
+(require 'init-auto-complete)
 (require 'init-ido)
 (require 'init-helm)
 (require 'init-isearch)

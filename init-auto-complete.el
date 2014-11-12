@@ -5,14 +5,15 @@
 ;; make auto-complete work well with linum-mode
 (ac-linum-workaround)
 
-(defun ext/ac-sources ()
+
+(eval-after-load 'auto-complete-mode
   (setq ac-sources
-	'(ac-source-yasnippet
-	  ac-source-filename
-	  ac-source-files-in-current-dir
-	  ac-source-words-in-same-mode-buffers
-	  ac-source-words-in-buffer)))
-(add-hook 'auto-complete-mode-hook 'ext/ac-sources)
+	(append
+	 '(ac-source-yasnippet
+	   ac-source-filename
+	   ac-source-files-in-current-dir
+	   ac-source-words-in-same-mode-buffers
+	   ac-source-words-in-buffer) ac-sources)))
 
 (ac-config-default)
 
@@ -24,14 +25,7 @@
                 css-mode less-css-mode cc-mode))
   (add-to-list 'ac-modes mode))
 
-(set-face-background 'ac-candidate-face "lightgray")
-(set-face-foreground 'ac-candidate-face "black")
-(set-face-background 'ac-selection-face "steelblue")
-(set-face-foreground 'ac-selection-face "white")
-(set-face-background 'popup-tip-face "khaki1")
-(set-face-foreground 'popup-tip-face "black")
-
-;; hook AC into completion-at-point
+; hook AC into completion-at-point
 (defun ext/auto-complete-at-point ()
  (when (and (not (minibufferp))
             (fboundp 'auto-complete-mode)
