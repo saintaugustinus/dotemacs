@@ -28,7 +28,7 @@
     (dolist (charset '(han cjk-misc kana bopomofo))
       (set-fontset-font t charset zh-font))))
 
-(defvar ext/english-fonts '("Source Code Pro" "Consolas" "Monaco" "DejaVu Sans Mono" "Monospace" "Courier New"))
+(defvar ext/english-fonts '("Consolas" "Source Code Pro" "Monaco" "DejaVu Sans Mono" "Monospace" "Courier New"))
 (defvar ext/chinese-fonts '("微软雅黑" "Microsoft Yahei" "文泉驿等宽微米黑" "黑体" "新宋体" "宋体"))
 
 (ext/set-font

@@ -37,4 +37,18 @@
          (ext/helm-for-files-update-list)))
     ad-do-it))
 
+
+(require-package 'helm-swoop)
+
+;; Keybinding in evil-leader
+(evil-leader/set-key
+  "hf" 'helm-for-files
+  "hl" 'helm-locate
+  "y" 'helm-show-kill-ring
+  "ht" 'helm-top
+  "hm" 'helm-man-woman
+  "ho" 'helm-occur
+  "hx" 'helm-M-x
+  "B" 'helm-buffers-list)
+
 (provide 'init-helm)

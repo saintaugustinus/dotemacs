@@ -10,7 +10,8 @@
 (global-linum-mode t)
 
 (require-package 'moe-theme)
-(require 'moe-theme-switcher)
+(require 'moe-theme)
+(moe-light)
 
 ;; Make tabbar looks nice 
 (require-package 'tabbar)
@@ -27,7 +28,7 @@
 		    :background "gray80"
 		    :foreground "black"
 		    :box nil
-		    :family "Lucida Grande"
+		    :family "Consolas"
 		    )
 (set-face-attribute 'tabbar-selected nil
                     :background "gray95"
@@ -64,5 +65,8 @@
 (global-set-key (kbd "<M-right>") 'tabbar-forward)
 
 (tabbar-mode t)
+
+(require-package 'pretty-mode)
+(add-hook 'prog-hook 'pretty-mode)
 
 (provide 'init-appearance)
