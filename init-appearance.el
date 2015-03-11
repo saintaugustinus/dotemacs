@@ -67,6 +67,6 @@
 (tabbar-mode t)
 
 (require-package 'pretty-mode)
-(add-hook 'prog-hook 'pretty-mode)
+(add-hook 'prog-mode-hook 'pretty-mode)
 
 (provide 'init-appearance)
