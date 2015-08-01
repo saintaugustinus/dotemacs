@@ -1,7 +1,6 @@
 (require-package 'magit)
 (require-package 'git-blame)
-(require-package 'git-commit-mode)
-(require-package 'git-rebase-mode)
+(require-package 'git-commit)
 (require-package 'gitignore-mode)
 (require-package 'gitconfig-mode)
 (require-package 'git-messenger)
