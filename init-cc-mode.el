@@ -12,7 +12,7 @@
 (require-package 'irony)
 (require-package 'company-irony)
 (require-package 'irony-eldoc)
-(require-package 'company-c-headers)
+(require-package 'company-irony-c-headers)
 (require-package 'flycheck-irony)
 
 (add-hook 'c-mode-hook 'irony-mode)
@@ -21,7 +21,7 @@
 (eval-after-load "irony"
   '(progn
      (add-to-list 'company-backends 'company-irony)
-     (add-to-list 'company-backends 'company-c-headers)
+     (add-to-list 'company-backends 'company-irony-c-headers)
      (add-hook 'flycheck-mode-hook 'flycheck-irony-setup)))
 
 (add-hook 'irony-mode-hook 'irony-eldoc)
