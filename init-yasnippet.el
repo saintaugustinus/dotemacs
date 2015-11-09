@@ -1,11 +1,14 @@
-;; Yasnippet Settings
-(require-package 'yasnippet)
-(require 'yasnippet)
+(use-package yasnippet
+  :quelpa
+  
+  :diminish yas-minor-mode
+  
+  :init
+  (setq yas-snippet-dirs
+        '("~/.emacs.d/lisp/misc/snippets/"))
 
-(setq yas-snippet-dirs
-      '("~/.emacs.d/lisp/misc/snippets/"
-	))
-
-(yas-global-mode 1)
+  :config
+  (yas-global-mode t)
+  )
 
 (provide 'init-yasnippet)

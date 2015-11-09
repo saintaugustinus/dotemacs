@@ -10,9 +10,9 @@
 
 (defvar ext/english-font-size nil)
 (defun ext/set-font (english-fonts
-		     english-font-size
-		     chinese-fonts
-		     &optional chinese-font-size)
+                     english-font-size
+                     chinese-fonts
+                     &optional chinese-font-size)
   (require 'cl)
   (setq ext/english-font-size english-font-size)
   (let ((en-font (ext/make-font-string
@@ -22,9 +22,9 @@
 
     (set-face-attribute 'default nil :font en-font)
 
-;;    (set-face-font 'italic (font-spec :family (find-if #'ext/font-existsp english-fonts) :slant 'italic :weight 'normal :size english-font-size))
-;;    (set-face-font 'bold-italic (font-spec :family (find-if #'ext/font-existsp english-fonts) :slant 'italic :weight 'bold :size english-font-size))
-;;    (set-face-font 'font-lock-comment-face (font-spec :family (find-if #'ext/font-existsp english-fonts) :size english-font-size :slant 'italic))
+    ;;    (set-face-font 'italic (font-spec :family (find-if #'ext/font-existsp english-fonts) :slant 'italic :weight 'normal :size english-font-size))
+    ;;    (set-face-font 'bold-italic (font-spec :family (find-if #'ext/font-existsp english-fonts) :slant 'italic :weight 'bold :size english-font-size))
+    ;;    (set-face-font 'font-lock-comment-face (font-spec :family (find-if #'ext/font-existsp english-fonts) :size english-font-size :slant 'italic))
     (dolist (charset '(han cjk-misc kana bopomofo))
       (set-fontset-font t charset zh-font))))
 

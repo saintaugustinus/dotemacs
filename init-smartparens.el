@@ -1,24 +1,28 @@
-;; Smartparens Settings
-(require-package 'smartparens)
-(require 'smartparens-config)
+(use-package smartparens
+  :quelpa
+  
+  :diminish smartparens-mode " ⓟ"
 
-(setq sp-autoskip-closing-pair 'always)
-(setq sp-navigate-close-if-unbalanced t)
-(smartparens-global-mode t)
+  :config
+  (require 'smartparens-config)
+  (setq sp-autoskip-closing-pair 'always)
+  (setq sp-navigate-close-if-unbalanced t)
+  (setq sp-cancel-autoskip-on-backward-movement nil)
 
-(diminish 'smartparens-mode)
+  (smartparens-global-mode t)
 
-(defun ext/sp-create-newline-and-enter-sexp (&rest _ignored)
-  "Open a new brace or bracket expression, with relevant newlines and indent. "
-  (previous-line)
-  (indent-according-to-mode)
-  (forward-line)
-  (newline)
-  (indent-according-to-mode)
-  (forward-line -1)
-  (indent-according-to-mode))
+  (defun ext/sp-create-newline-and-enter-sexp (&rest _ignored)
+    "Open a new brace or bracket expression, with relevant newlines and indent. "
+    (previous-line)
+    (indent-according-to-mode)
+    (forward-line)
+    (newline)
+    (indent-according-to-mode)
+    (forward-line -1)
+    (indent-according-to-mode))
 
-(sp-with-modes '(c-mode c++-mode java-mode js2-mode sh-mode)
-  (sp-local-pair "{" nil :post-handlers '((ext/sp-create-newline-and-enter-sexp "RET"))))
+  (sp-with-modes '(c-mode c++-mode java-mode js2-mode sh-mode)
+    (sp-local-pair "{" nil :post-handlers '((ext/sp-create-newline-and-enter-sexp "RET"))))
+  )
 
 (provide 'init-smartparens)

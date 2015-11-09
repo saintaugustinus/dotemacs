@@ -1,13 +1,16 @@
-;; Add melpa
-(require 'package)
-(add-to-list 'package-archives
-	     '("melpa" . "http://melpa.milkbox.net/packages/") t)
-
 (package-initialize)
 
-(defun require-package (package &optional min-version)
-  (if (package-installed-p package min-version)
-      t
-    (package-install package)))
+(setq quelpa-update-melpa-p nil)
+(if (require 'quelpa nil t)
+    t
+  (with-temp-buffer
+    (url-insert-file-contents "https://raw.github.com/quelpa/quelpa/master/bootstrap.el")
+    (eval-buffer)))
+
+(quelpa
+ '(quelpa-use-package
+   :fetcher github
+   :repo "quelpa/quelpa-use-package"))
+(require 'quelpa-use-package)
 
 (provide 'init-elpa)

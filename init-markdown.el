@@ -1,7 +1,9 @@
-(require-package 'markdown-mode)
-(require 'markdown-mode)
-
-(setq auto-mode-alist
-      (cons '("\\.\\(md\\|markdown\\)\\'" . markdown-mode) auto-mode-alist))
+(use-package markdown-mode
+  :quelpa
+  
+  :mode
+  ("\\.markdown\\'" . markdown-mode)
+  ("\\.md\\'" . markdown-mode)
+  )
 
 (provide 'init-markdown)

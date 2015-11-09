@@ -1,21 +1,22 @@
-(require-package 'magit)
-(require-package 'git-blame)
-(require-package 'git-commit)
-(require-package 'gitignore-mode)
-(require-package 'gitconfig-mode)
-(require-package 'git-messenger)
-(require-package 'git-timemachine)
+(use-package magit
+  :quelpa
+  
+  :init
+  (setq magit-push-always-verify nil
+        git-commit-finish-query-functions nil
+        magit-save-some-buffers nil
+        magit-set-upstream-on-push t
+        magit-diff-refine-hunk t
+        )
+  )
 
+(use-package git-gutter
+  :quelpa
 
-(setq-default magit-save-some-buffers nil
-	      magit-process-popup-time 10
-	      magit-diff-refine-hunk t
-	      magit-completing-read-function 'magit-ido-completing-read)
-
-(global-set-key [(meta f12)] 'magit-status)
-
-(require-package 'git-gutter)
-
-(add-hook 'after-init-hook #'global-git-gutter-mode)
+  :diminish git-gutter-mode
+  
+  :config
+  (add-hook 'after-init-hook #'global-git-gutter-mode)
+  )
 
 (provide 'init-git)

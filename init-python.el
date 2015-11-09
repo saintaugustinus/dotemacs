@@ -1,14 +1,20 @@
-(require-package 'elpy)
-
-(eval-after-load "elpy"
+(eval-after-load 'python
   '(progn
-     (setq elpy-rpc-python-command "python2") ;;Python2 is my choice
-     (setq elpy-rpc-backend "jedi")
-     (setq python-indent-offset 4)
-     (elpy-use-ipython)
-     (dolist (elpy-disable-mode '(elpy-module-flymake elpy-module-highlight-indentation))
-       (setq elpy-modules (delete elpy-disable-mode elpy-modules)))))
+     (use-package anaconda-mode
+       :quelpa
+       
+       :init
+       (add-hook 'python-mode-hook 'anaconda-mode)
 
-(add-hook 'python-mode-hook 'elpy-mode)
+       :config
+       (use-package company-anaconda
+         :quelpa
+         
+         :init
+         (add-to-list 'company-backends 'company-anaconda)
+         )
+       )
+     )
+  )
 
 (provide 'init-python)
