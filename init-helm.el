@@ -1,33 +1,36 @@
 (use-package helm
-  :ensure nil
-  :quelpa
-
+  :bind
+  ("C-x C-f" . helm-find-files)
+  ("M-x" . helm-M-x)
+  ("C-x r b" . helm-bookmarks)
   :init
   (setq helm-command-prefix-key "C-x C-a")
-
   (evil-leader/set-key
+    "f"  'helm-find-files
     "hf" 'helm-for-files
-    "hl" 'helm-locate
-    "y" 'helm-show-kill-ring
+    "y"  'helm-show-kill-ring
     "ht" 'helm-top
     "hm" 'helm-man-woman
     "ho" 'helm-occur
-    "hx" 'helm-M-x
-    "B" 'helm-buffers-list)
-
+    "x"  'helm-M-x
+    "bb" 'helm-buffers-list)
+  (setq helm-ff-auto-update-initial-value nil
+        helm-ff-file-name-history-use-recentf t
+        helm-M-x-always-save-history t
+        helm-M-x-fuzzy-match t
+        helm-recentf-fuzzy-match t
+        helm-buffers-fuzzy-matching t)
   :config
   (helm-mode t)
+  (helm-adaptive-mode t)
+  (helm-push-mark-mode t)
 
-  (setq helm-ff-auto-update-initial-value t)
-
-  (global-set-key (kbd "C-x r b") 'helm-bookmarks)
-
-  ;; (setq helm-su-or-sudo "sudo")
-
-  (setq helm-locate-command "locate -e -b %s -r %s")
-
+  (use-package helm-flx
+    :config
+    (helm-flx-mode t))
+  
   ;; Don't save history information to file
-  (remove-hook 'kill-emacs-hook 'helm-adaptive-save-history)
+  ;; (remove-hook 'kill-emacs-hook 'helm-adaptive-save-history)
 
   ;; Make `helm-for-files-preferred-list' dynamic
   (defun ext/helm-for-files-update-list ()
@@ -45,11 +48,12 @@
   )
 
 (use-package helm-swoop
-  :quelpa
-  )
+  :commands helm-swoop
+  :init
+  (evil-leader/set-key
+    "hs" 'helm-swoop))
 
-(use-package helm-ag
-  :quelpa
-  )
+(use-package helm-gitignore
+  :defer t)
 
 (provide 'init-helm)

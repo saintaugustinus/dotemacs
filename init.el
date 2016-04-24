@@ -1,10 +1,7 @@
 (require 'init-elpa)
-
-(eval-when-compile
-  (require 'use-package))
-(require 'diminish)
-(require 'bind-key)
-
+(require 'benchmark)
+(benchmark-init/activate)
+(require 'init-evil)
 (require 'init-core)
 (if window-system
     (require 'init-fonts))
@@ -14,9 +11,6 @@
 (require 'init-hippie-expand)
 (require 'init-yasnippet)
 (require 'init-smartparens)
-(require 'init-evil)
-(require 'init-smex)
-(require 'init-ido)
 (require 'init-helm)
 (require 'init-projectile)
 (require 'init-git)
@@ -25,8 +19,8 @@
 (require 'init-gtags)
 (require 'init-cc-mode)
 (require 'init-python)
-;; (require 'init-slime)
-(require 'init-markdown)
+
+(require 'init-extmodes)
 
 (require 'server)
 (unless (server-running-p)

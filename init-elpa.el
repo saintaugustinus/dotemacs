@@ -1,16 +1,18 @@
+(require 'package)
+
+(add-to-list 'package-archives
+             '("melpa" . "https://melpa.org/packages/"))
 (package-initialize)
 
-(setq quelpa-update-melpa-p nil)
-(if (require 'quelpa nil t)
+(if (package-installed-p 'use-package)
     t
-  (with-temp-buffer
-    (url-insert-file-contents "https://raw.github.com/quelpa/quelpa/master/bootstrap.el")
-    (eval-buffer)))
+  (package-installed 'use-package))
 
-(quelpa
- '(quelpa-use-package
-   :fetcher github
-   :repo "quelpa/quelpa-use-package"))
-(require 'quelpa-use-package)
+(setq use-package-always-ensure t)
+
+(eval-when-compile
+  (require 'use-package))
+(require 'diminish)
+(require 'bind-key)
 
 (provide 'init-elpa)

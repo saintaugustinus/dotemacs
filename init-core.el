@@ -11,78 +11,59 @@
 
 (show-paren-mode t)
 (setq how-paren-style 'parentheses)
-(mouse-avoidance-mode 'animate)
 (display-time-mode t)
 (tool-bar-mode 0)
 (global-linum-mode t)
 (global-hl-line-mode t)
 
-(use-package zenburn-theme
-  :quelpa
-
-  :config
-  (load-theme 'zenburn t)
-  )
+(use-package spacemacs-theme
+  :init
+  (load-theme 'spacemacs-dark t))
 
 (use-package hideshowvis
-  :quelpa
-
-  :config
-  (add-hook 'prog-mode-hook #'hideshowvis-enable)
-  )
+  :diminish hideshowvis-minor-mode
+  :init
+  (add-hook 'prog-mode-hook #'hideshowvis-enable))
 
 (use-package which-key
-  :quelpa
-
   :diminish which-key-mode
-
   :init
   (setq which-key-idle-delay 0.5)
-
   :config
-  (which-key-mode)
-  )
+  (which-key-mode t))
 
 (use-package rainbow-delimiters
-  :quelpa
-
-  :config
-  (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
-  )
+  :init
+  (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
 
 (use-package anzu
-  :quelpa
-
-  :diminish anzu-mode
-  
-  :config
-  (add-hook 'after-init-hook #'global-anzu-mode)
-  )
+  :diminish anzu-mode 
+  :init
+  (add-hook 'after-init-hook #'global-anzu-mode))
 
 (use-package ace-jump-mode
-  :quelpa
-
-  :config
-  (progn
-    (evil-leader/set-key
-      "ac" 'ace-jump-char-mode
-      "aw" 'ace-jump-word-mode
-      "al" 'ace-jump-line-mode)
-    )
-  )
+  :defer t
+  :init
+  (evil-leader/set-key
+    "ac" 'ace-jump-char-mode
+    "aw" 'ace-jump-word-mode
+    "al" 'ace-jump-line-mode))
 
 (use-package iedit
-  :quelpa
+  :defer t
   )
 
 (use-package aggressive-indent
-  :quelpa
+  :diminish aggressive-indent-mode " Ⓘ" 
+  :init
+  (add-hook 'prog-mode-hook 'aggressive-indent-mode))
 
-  :diminish aggressive-indent-mode " Ⓘ"
-  
-  :config
-  (global-aggressive-indent-mode t)
-  )
+(use-package whitespace-cleanup-mode
+  :diminish whitespace-cleanup-mode
+  :init
+  (add-hook 'prog-mode-hook 'whitespace-cleanup-mode))
 
+(use-package expand-region
+  :bind ("C-=" . er/expand-region))
 
 (provide 'init-core)

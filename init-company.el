@@ -1,41 +1,44 @@
 (use-package company
-  :quelpa
-
-  :diminish company-mode " ⓐ"
-  
+  :diminish company-mode
   :init
   (setq company-idle-delay 0.2
         company-minimum-prefix-length 2
         company-show-numbers t
         company-require-match nil)
+  (setq-default company-backends
+                '(company-nxml company-css company-cmake company-capf company-dabbrev-code
+                               company-gtags company-etags company-keywords
+                               company-files company-dabbrev))
 
   :config
   (add-hook 'after-init-hook 'global-company-mode)
 
-  (add-to-list 'company-backends 'company-ispell t)
-  (add-to-list 'company-backends 'company-files t)
+  ;; Add yasnippet support for all company backends
+  ;; https://github.com/syl20bnr/spacemacs/pull/179
+  (defvar company-mode/enable-yas t "Enable yasnippet for all backends.")
+
+  (defun company-mode/backend-with-yas (backend)
+    (if (or (not company-mode/enable-yas) (and (listp backend)    (member 'company-yasnippet backend)))
+        backend
+      (append (if (consp backend) backend (list backend))
+              '(:with company-yasnippet))))
+  (setq company-backends (mapcar #'company-mode/backend-with-yas company-backends))
+
   (add-to-list 'company-begin-commands 'outshine-self-insert-command)
 
-  (setq company-backends (delete 'company-eclim company-backends)
-        company-backends (delete 'company-bbdb company-backends)
-        company-backends (delete 'company-oddmuse company-backends)
-        company-backends (delete 'company-xcode company-backends)
-        company-backends (delete 'company-clang company-backends)
-        company-backends (delete 'company-semantic company-backends)
-        )
-
   (use-package company-quickhelp
-    :quelpa
-
     :config
-    (company-quickhelp-mode t)
-    )
-  
+    (company-quickhelp-mode t))
+
   (use-package company-statistics
     :pin gnu
-    
+    :ensure t
     :config
     (company-statistics-mode t))
+
+  (use-package helm-company
+    :bind (("C-:". helm-company)
+           ("C-:" . helm-company)))
   )
 
 (provide 'init-company)

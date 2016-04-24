@@ -1,6 +1,4 @@
 (use-package yasnippet
-  :quelpa
-  
   :diminish yas-minor-mode
   
   :init
@@ -8,7 +6,7 @@
         '("~/.emacs.d/lisp/misc/snippets/"))
 
   :config
-  (yas-global-mode t)
+  (yas-global-mode t) 
   )
 
 (provide 'init-yasnippet)

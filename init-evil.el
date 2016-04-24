@@ -1,18 +1,14 @@
 (use-package evil
-  :quelpa
-  
   :diminish undo-tree-mode
-  
+  :init
+
   :config
   (use-package evil-leader
-    :quelpa
-    
     :config
     (global-evil-leader-mode t)
     (evil-leader/set-leader "<SPC>")
 
     (evil-leader/set-key
-      "bb" 'switch-to-buffer
       "bf" 'beginning-of-defun
       "bu" 'backward-up-list
       "ef" 'end-of-defun
@@ -21,7 +17,6 @@
       "ee" 'eval-expression
       "sc" 'shell-command
       "dj" 'dired-jump
-      "ff" 'toggle-frame-fullscreen
       "W" 'save-some-buffers
       "k" 'kill-buffer
       "K" 'kill-buffer-and-window
@@ -30,10 +25,9 @@
       "2" 'split-window-below
       "3" 'split-window-right)
     )
-
+  (require 'cl)
   (loop for (mode . state) in
-        '(
-          (minibuffer-inactive-mode . emacs)
+        '((minibuffer-inactive-mode . emacs)
           (grep-mode . emacs)
           (Info-mode . emacs)
           (term-mode . emacs)
@@ -53,23 +47,23 @@
           (speedbar-mode . emacs)
           (magit-commit-mode . normal)
           (magit-diff-mode . normal)
+          (flycheck-error-list-mode . emacs)
           )
         do (evil-set-initial-state mode state))
 
-  ;; change mode-line color by evil state
-  (lexical-let ((default-color (cons (face-background 'mode-line)
-                                     (face-foreground 'mode-line))))
-    (add-hook 'post-command-hook
-              (lambda ()
-                (let ((color (cond ((minibufferp) default-color)
-                                   ((evil-insert-state-p) '("#e80000" . "#ffffff"))
-                                   ((evil-emacs-state-p) '("#444488" . "#ffffff"))
-                                   ((buffer-modified-p) '("#006fa0" . "#ffffff"))
-                                   (t default-color))))
-                  (set-face-background 'mode-line (car color))
-                  (set-face-foreground 'mode-line (cdr color))))))
-  
-  (evil-mode t) 
+  (evil-mode t)
   )
+
+(use-package evil-visualstar
+  :config
+  (global-evil-visualstar-mode))
+
+(use-package evil-exchange
+  :config
+  (evil-exchange-install))
+
+(use-package evil-surround
+  :config
+  (global-evil-surround-mode t))
 
 (provide 'init-evil)

@@ -1,8 +1,6 @@
 (use-package smartparens
-  :quelpa
-  
   :diminish smartparens-mode " ⓟ"
-
+  :init
   :config
   (require 'smartparens-config)
   (setq sp-autoskip-closing-pair 'always)
@@ -24,5 +22,9 @@
   (sp-with-modes '(c-mode c++-mode java-mode js2-mode sh-mode)
     (sp-local-pair "{" nil :post-handlers '((ext/sp-create-newline-and-enter-sexp "RET"))))
   )
+
+(use-package evil-smartparens
+  :config
+  (add-hook 'smartparens-enabled-hook #'evil-smartparens-mode))
 
 (provide 'init-smartparens)
